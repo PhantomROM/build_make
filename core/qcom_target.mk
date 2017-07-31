@@ -49,7 +49,9 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
 
     # Enable color metadata for modern UM targets
     ifneq ($(filter msm8996 msm8998 sdm660,$(TARGET_BOARD_PLATFORM)),)
-        TARGET_USES_COLOR_METADATA := true
+        ifneq ($(TARGET_USES_COLOR_METADATA), false)
+            TARGET_USES_COLOR_METADATA := true
+        endif
     endif
 
     # List of targets that use master side content protection

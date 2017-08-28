@@ -131,12 +131,12 @@ function check_product()
         return
     fi
 
-    if (echo -n $1 | grep -q -e "^du_") ; then
-       DU_BUILD=$(echo -n $1 | sed -e 's/^du_//g')
+    if (echo -n $1 | grep -q -e "^deso_") ; then
+       DESO_BUILD=$(echo -n $1 | sed -e 's/^deso_//g')
     else
-       DU_BUILD=
+       DESO_BUILD=
     fi
-    export DU_BUILD
+    export DESO_BUILD
 
         TARGET_PRODUCT=$1 \
         TARGET_BUILD_VARIANT= \
@@ -555,10 +555,10 @@ function print_lunch_menu()
 function breakfast()
 {
     target=$1
-    DU_DEVICES_ONLY="true"
+    DESO_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/du/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/deso/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -575,7 +575,7 @@ function breakfast()
             lunch $target
         else
             # This is probably just the du model name
-            lunch du_$target-userdebug
+            lunch deso_$target-userdebug
         fi
     fi
     return $?
